@@ -1,4 +1,14 @@
 Addressbook::Application.routes.draw do
+  get "contacts/index"
+
+  get "contacts/new"
+
+  get "contacts/create"
+
+  get "contacts/update"
+
+  get "contacts/delete"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
