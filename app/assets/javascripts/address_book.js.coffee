@@ -1,2 +1,2 @@
-@angular.module('addressbook',['ngResource'])
+@app = angular.module('addressbook',['ngResource'])
 

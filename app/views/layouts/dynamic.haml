@@ -11,6 +11,11 @@
   %body(ng-controller='ToyCtrl')
     %h1(ng-click='greetings()') Addressbook angularized
 
+    %div(ng-controller='ContactsCtrl')
+      %input(type='button' value='Fetch all contacts' ng-click='fetchAll()')
+      %ul
+        %li(ng-repeat='contact in contacts') {{contact.name}}
+
     %div(ng-view)
 
 
