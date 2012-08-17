@@ -3,4 +3,4 @@ class @ToyCtrl
     @$scope.greetings = () ->
       alert("I'm angularized!")
 
-ToyCtrl.$inject(['$scope','ngResource'])
+ToyCtrl.$inject = ['$scope','$resource']
