@@ -1,6 +1,6 @@
 class @ToyCtrl
-  constructor: (@$scope) ->
+  constructor: (@$scope,@$resource) ->
     @$scope.greetings = () ->
       alert("I'm angularized!")
 
-ToyCtrl.$inject(['$scope'])
+ToyCtrl.$inject(['$scope','ngResource'])
