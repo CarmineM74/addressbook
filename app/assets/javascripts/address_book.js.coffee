@@ -1,7 +1,17 @@
 @app = angular.module('addressbook',['ngResource'])
+  .config(['$routeProvider', ($routeProvider) ->
+    $routeProvider
+      .when('/contacts', 
+        {controller: ContactsCtrl, templateUrl: 'assets/contacts.html'}
+      )
+      .when('/about',
+        {controller: ToyCtrl, templateUrl: 'assets/about.html'}
+      )
+      .otherwise(redirectTo: '/about')
+  ])
 
 class @AddressbookCtrl
-  @inject : ['$scope','$log','$http']
+  @inject : ['$scope','$log','$http',]
   constructor : (@$scope,@$log,@$http) ->
     @$log.log('Bootstrapping application ...')
     @setupXhr()
