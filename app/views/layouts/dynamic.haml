@@ -8,13 +8,14 @@
     = javascript_include_tag 'angular-resource-1.0.1'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body(ng-controller='ToyCtrl')
-    %h1(ng-click='greetings()') Addressbook angularized
+  %body(ng-controller='AddressbookCtrl')
+    %div(ng-controller='ToyCtrl')
+      %h1(ng-click='greetings()') Addressbook angularized
 
     %div(ng-controller='ContactsCtrl')
       %input(type='button' value='Fetch all contacts' ng-click='fetchAll()')
       %ul
-        %li(ng-repeat='contact in contacts') {{contact.name}}
+        %li(ng-repeat='contact in contacts') {{contact.name}} {{contact.surname}} : {{contact.phone}} ({{contact.email}})
 
     %div(ng-view)
 
