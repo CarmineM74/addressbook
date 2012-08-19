@@ -1,10 +1,15 @@
 <div ng-controller='ContactsCtrl'>
-  <input type='button' value='Fetch all contacts' ng-click='fetchAll()' />
-  <ul class='contacts'>
-    <li ng-repeat='contact in contacts'>
-      {{contact.name}} {{contact.surname}} : {{contact.phone}} ({{contact.email}})
-    </li>
-  </ul>
+  <div class='span6'>
+    <input class='btn' type='button' value='Fetch all contacts' ng-click='fetchAll()' />
+    <ul class='contacts'>
+      <li ng-repeat='contact in contacts'>
+        {{contact.name}} {{contact.surname}} : {{contact.phone}} ({{contact.email}})
+      </li>
+    </ul>
+  </div>
+  <div id='new-contact' class='span6'>
+    <h2>New contact</h2>
+  </div>
 </div>
 
 
