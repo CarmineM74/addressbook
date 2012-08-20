@@ -10,9 +10,12 @@ class ContactsSvc
       ,{index: {method: 'GET', isArray: true}}
     )
   
-  all: (cb) ->
+  all: (success, error) ->
     @$log.log('Fetching contacts from backend ...')
-    @contacts.index((response, getResponseHeaders) -> 
-      if typeof cb == 'function'
-        cb(response, getResponseHeaders)
+    @contacts.index((response, getResponseHeaders) ->  
+      if typeof success == 'function'
+        success(response, getResponseHeaders)
+     , ->
+       if typeof error == 'function'
+         error()
     )
