@@ -3,7 +3,28 @@ class @ContactsCtrl
   constructor : (@$scope, @dmContactsSvc,@$log) ->
     @$scope.contacts = []
     @$scope.fetching = false
+    @$scope.selectedContact = {}
+    @$scope.formCaption = ''
+    @$scope.formTitle = ''
+    @$scope.formSubmitCaption = ''
+
+    @$scope.newContact = angular.bind(this, @newContact)
     @$scope.fetchAll = angular.bind(this, @fetchAll)
+    @$scope.selectContact = angular.bind(this, @selectContact)
+
+  newContact : ->
+    @$log.log('New contact')
+    @$scope.formCaption = 'New contact'
+    @$scope.formTitle = 'Creating new contact'
+    @$scope.formSubmitCaption = 'Create'
+    @$scope.selectedContact = {}
+    
+  selectContact : (contact) ->
+    @$log.log('Selecting contact: ' + JSON.stringify(contact))
+    @$scope.formCaption = 'Existing contact'
+    @$scope.formTitle = 'Showing existing contact'
+    @$scope.formSubmitCaption = 'Save'
+    @$scope.selectedContact = contact
 
   fetchAll : ->
     @$scope.fetching = true

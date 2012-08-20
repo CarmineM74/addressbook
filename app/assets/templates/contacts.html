@@ -1,6 +1,7 @@
 <div ng-controller='ContactsCtrl'>
   <div class='span7'>
     <input class='btn' type='button' value='Fetch all contacts' ng-click='fetchAll()' />
+    <input class='btn' type='button' value='New contact' ng-click='newContact()' />
     <img src='assets/3.gif' ng-show='fetching' />
     <table class='table table-striped'>
       <thead>
@@ -13,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-	<tr ng-repeat='contact in contacts'>
+	<tr ng-repeat='contact in contacts' ng-click='selectContact(contact)'>
 	  <td>{{contact.name}}</td>
 	  <td>{{contact.surname}}</td>
 	  <td>{{contact.email}}</td>
@@ -24,41 +25,41 @@
     </table>
   </div>
   <div id='new-contact' class='span5'>
-    <form class='form-horizontal'>
+    <form class='form-horizontal' ng-show='formCaption'>
       <fieldset>
-        <legend ui-jq='tooltip' ui-options="{placement: 'bottom'}" title='Add new contact'>New Contact</legend>
+        <legend ui-jq='tooltip' ui-options="{placement: 'bottom'}" title='{{formTitle}}'>{{formCaption}}</legend>
         <div class='control-group'>
           <label class='control-label' for='name'>Name</label>
 	  <div class='controls'>
-            <input id='name' class='input-xlarge' type='text'>
+            <input id='name' class='input-xlarge' type='text' ng-model='selectedContact.name'>
           </div>	
 	</div>
         <div class='control-group'>
           <label class='control-label' for='surname'>Surname</label>
 	  <div class='controls'>
-            <input id='surname' class='input-xlarge' type='text'>
+            <input id='surname' class='input-xlarge' type='text' ng-model='selectedContact.surname'>
           </div>	
 	</div>
         <div class='control-group'>
           <label class='control-label' for='email'>E-Mail</label>
 	  <div class='controls'>
-            <input id='email' class='input-xlarge' type='text'>
+            <input id='email' class='input-xlarge' type='text' ng-model='selectedContact.email'>
           </div>	
 	</div>
         <div class='control-group'>
           <label class='control-label' for='phone'>Phone Nr.</label>
 	  <div class='controls'>
-            <input id='phone' class='input-xlarge' type='text'>
+            <input id='phone' class='input-xlarge' type='text' ng-model='selectedContact.phone'>
           </div>	
 	</div>
         <div class='control-group'>
           <label class='control-label' for='active'>Active</label>
 	  <div class='controls'>
-            <input id='active' class='input-xlarge' type='checkbox'>
+            <input id='active' class='input-xlarge' type='checkbox' ng-model='selectedContact.active'>
           </div>	
 	</div>
         <div class='form-actions'>
-          <button type='submit' class='btn'>Save</button>
+          <button type='submit' class='btn'>{{formSubmitCaption}}</button>
         </div>
       </fieldset>
     </form>
