@@ -43,6 +43,7 @@ class @ContactsCtrl
     @$scope.selectedContact = contact
 
   fetchAll : ->
+    @$scope.formCaption = ''
     @$scope.fetching = true
     @$scope.contacts = @dmContactsSvc.all( (res) =>
       @$log.log(res)
