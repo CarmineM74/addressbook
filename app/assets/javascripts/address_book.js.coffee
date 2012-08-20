@@ -1,4 +1,4 @@
-@app = angular.module('addressbook',['ngResource'])
+@app = angular.module('addressbook',['ngResource','ui'])
   .config(['$routeProvider', ($routeProvider) ->
     $routeProvider
       .when('/contacts', 
