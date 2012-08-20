@@ -6,23 +6,21 @@ class ContactsController < ApplicationController
     respond_with(@contacts)	
   end
 
-  def new
-  end
-
   def create
-  end
-
-  def show
-    
-  end
-
-  def edit
-    
+    @contact = Contact.new(params[:contact])
+    @contact.save
+    respond_with(@contact)
   end
 
   def update
+    @contact = Contact.find(params[:id])
+    @contact.update_attributes(params[:contact])
+    respond_with(@contact)
   end
 
   def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+    respond_with({})
   end
 end

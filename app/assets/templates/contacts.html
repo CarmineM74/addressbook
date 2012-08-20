@@ -59,7 +59,8 @@
           </div>	
 	</div>
         <div class='form-actions'>
-          <button type='submit' class='btn'>{{formSubmitCaption}}</button>
+          <button type='submit' class='btn' ng-click='saveContact(selectedContact)'>{{formSubmitCaption}}</button>
+          <button type='submit' class='btn' ng-click='deleteContact(selectedContact)' ng-show='selectedContact.id'>Delete</button>
         </div>
       </fieldset>
     </form>

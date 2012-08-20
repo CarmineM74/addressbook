@@ -11,6 +11,22 @@ class @ContactsCtrl
     @$scope.newContact = angular.bind(this, @newContact)
     @$scope.fetchAll = angular.bind(this, @fetchAll)
     @$scope.selectContact = angular.bind(this, @selectContact)
+    @$scope.saveContact = angular.bind(this, @saveContact)
+    @$scope.deleteContact = angular.bind(this, @deleteContact)
+
+  deleteContact : (contact) ->
+    @$log.log('Removing contact from backend ...')
+    @dmContactsSvc.destroy(contact,
+      => alert('Removed'),
+      => alert('Not removed')
+    )
+
+  saveContact : (contact) ->
+    @$log.log('Pushing edited contact to backend ...')
+    @dmContactsSvc.save(contact,
+      => alert('Success'),
+      => alert('Failure')
+    )
 
   newContact : ->
     @$log.log('New contact')
