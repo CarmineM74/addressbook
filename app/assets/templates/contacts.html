@@ -1,6 +1,7 @@
 <div ng-controller='ContactsCtrl'>
   <div class='span7'>
     <input class='btn' type='button' value='Fetch all contacts' ng-click='fetchAll()' />
+    <img src='assets/3.gif' ng-show='fetching' />
     <table class='table table-striped'>
       <thead>
         <tr>
