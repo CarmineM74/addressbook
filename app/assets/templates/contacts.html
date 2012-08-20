@@ -1,14 +1,66 @@
 <div ng-controller='ContactsCtrl'>
-  <div class='span6'>
+  <div class='span7'>
     <input class='btn' type='button' value='Fetch all contacts' ng-click='fetchAll()' />
-    <ul class='contacts'>
-      <li ng-repeat='contact in contacts'>
-        {{contact.name}} {{contact.surname}} : {{contact.phone}} ({{contact.email}})
-      </li>
-    </ul>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Name</th>
+	  <th>Surname</th>
+	  <th>E-Mail</th>
+	  <th>Phone Nr.</th>
+	  <th>Active</th>
+        </tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat='contact in contacts'>
+	  <td>{{contact.name}}</td>
+	  <td>{{contact.surname}}</td>
+	  <td>{{contact.email}}</td>
+	  <td>{{contact.phone}}</td>
+	  <td>{{contact.active}}</td>
+	</tr>
+      </tbody>
+    </table>
   </div>
-  <div id='new-contact' class='span6'>
-    <h2 title='Use this form to add a new contact' ui-jq='tooltip' ui-options="{placement: 'bottom'}">New contact</h2>
+  <div id='new-contact' class='span5'>
+    <form class='form-horizontal'>
+      <fieldset>
+        <legend ui-jq='tooltip' ui-options="{placement: 'bottom'}" title='Add new contact'>New Contact</legend>
+        <div class='control-group'>
+          <label class='control-label' for='name'>Name</label>
+	  <div class='controls'>
+            <input id='name' class='input-xlarge' type='text'>
+          </div>	
+	</div>
+        <div class='control-group'>
+          <label class='control-label' for='surname'>Surname</label>
+	  <div class='controls'>
+            <input id='surname' class='input-xlarge' type='text'>
+          </div>	
+	</div>
+        <div class='control-group'>
+          <label class='control-label' for='email'>E-Mail</label>
+	  <div class='controls'>
+            <input id='email' class='input-xlarge' type='text'>
+          </div>	
+	</div>
+        <div class='control-group'>
+          <label class='control-label' for='phone'>Phone Nr.</label>
+	  <div class='controls'>
+            <input id='phone' class='input-xlarge' type='text'>
+          </div>	
+	</div>
+        <div class='control-group'>
+          <label class='control-label' for='active'>Active</label>
+	  <div class='controls'>
+            <input id='active' class='input-xlarge' type='checkbox'>
+          </div>	
+	</div>
+        <div class='form-actions'>
+          <button type='submit' class='btn'>Save</button>
+        </div>
+      </fieldset>
+    </form>
   </div>
 </div>
 

@@ -5,7 +5,7 @@
 class ContactsSvc
   constructor: ($resource,@$log) ->
     @$log.log('Initializing Contacts Service ...')
-    @contacts = $resource('http://dm.dev:port/:path'
+    @contacts = $resource('http://192.168.1.95:port/:path'
       ,{port: ':3000', path: 'contacts.json'}
       ,{index: {method: 'GET', isArray: true}}
     )
