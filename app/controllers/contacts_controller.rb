@@ -3,7 +3,12 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = Contact.all
-    respond_with(@contacts)	
+    respond_with(@contacts) do |format|
+      format.pdf do
+        pdf = ContactsPdf.new(@contacts, view_context)
+        send_data pdf.render, filename: 'contacts.pdf', type: 'application/pdf'
+      end
+    end	
   end
 
   def create

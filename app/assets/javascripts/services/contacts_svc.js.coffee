@@ -8,10 +8,14 @@ class ContactsSvc
     @contacts = $resource('http://192.168.1.95:port/:path/:contact_id'
       ,{port: ':3000', path: 'contacts'}
       ,{index: {method: 'GET', isArray: true}
+      ,toPdf: {method: 'GET'}
       ,create: {method: 'POST'}
       ,update: {method: 'PUT'}
       ,destroy: {method: 'DELETE'}}
     )
+
+  toPdf: ->
+    @contacts.toPdf({path: 'contacts.pdf'})
 
   destroy: (contact, success, error) ->
     contact.$destroy({contact_id: contact.id},

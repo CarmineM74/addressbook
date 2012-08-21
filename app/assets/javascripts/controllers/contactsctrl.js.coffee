@@ -13,6 +13,11 @@ class @ContactsCtrl
     @$scope.selectContact = angular.bind(this, @selectContact)
     @$scope.saveContact = angular.bind(this, @saveContact)
     @$scope.deleteContact = angular.bind(this, @deleteContact)
+    @$scope.exportToPDF = angular.bind(this, @exportToPDF)
+
+  exportToPDF : ->
+    @$log.log('Exporting contacts to PDF ...')
+    @dmContactsSvc.toPdf()
 
   deleteContact : (contact) ->
     @$log.log('Removing contact from backend ...')

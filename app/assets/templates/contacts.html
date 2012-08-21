@@ -2,6 +2,7 @@
   <div class='span7'>
     <input class='btn' type='button' value='Fetch all contacts' ng-click='fetchAll()' />
     <input class='btn' type='button' value='New contact' ng-click='newContact()' />
+    <a class='btn' ng-show='contacts.length' ng-click='exportToPDF()' href='/contacts.pdf'>Export to PDF</a>
     <img src='assets/3.gif' ng-show='fetching' />
     <table class='table table-striped'>
       <thead>
