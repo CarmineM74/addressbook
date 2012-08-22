@@ -7,6 +7,9 @@
       .when('/about',
         {controller: ToyCtrl, templateUrl: 'assets/about.html'}
       )
+      .when('/users',
+        {controller: UsersCtrl, templateUrl: 'assets/users.html'}
+      )
       .otherwise(redirectTo: '/about')
   ])
 

@@ -1,0 +1,52 @@
+<div ng-controller='UsersCtrl'>
+  <div class='span7'>
+    <input class='btn' type='button' value='Fetch all users' ng-click='fetchAll()' />
+    <input class='btn' type='button' value='New user' ng-click='newUser()' />
+    <img src='assets/3.gif' ng-show='fetching' />
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+	  <th>E-Mail</th>
+	  <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat='user in users' ng-click='selectUser(user)'>
+	  <td>{{user.email}}</td>
+	  <td>{{user.password_digest}}</td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+  <div id='new-user' class='span5'>
+    <form class='form-horizontal' ng-show='formCaption'>
+      <fieldset>
+        <legend ui-jq='tooltip' ui-options="{placement: 'bottom'}" title='{{formTitle}}'>{{formCaption}}</legend>
+        <div class='control-group'>
+          <label class='control-label' for='email'>E-Mail</label>
+	  <div class='controls'>
+            <input id='email' class='input-xlarge' type='text' ng-model='selectedUser.email'>
+          </div>	
+	</div>
+        <div class='control-group'>
+          <label class='control-label' for='password'>Password</label>
+	  <div class='controls'>
+            <input id='password' class='input-xlarge' type='password' ng-model='selectedUser.password'>
+          </div>	
+	</div>
+        <div class='control-group'>
+          <label class='control-label' for='password_confirm'>Password confirmation</label>
+	  <div class='controls'>
+            <input id='password_confirm' class='input-xlarge' type='password' ng-model='selectedUser.password_confirmation'>
+          </div>	
+	</div>
+        <div class='form-actions'>
+          <button type='submit' class='btn' ng-click='saveUser(selectedUser)'>{{formSubmitCaption}}</button>
+          <button type='submit' class='btn' ng-click='deleteUser(selectedUser)' ng-show='selectedUser.id'>Delete</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+
