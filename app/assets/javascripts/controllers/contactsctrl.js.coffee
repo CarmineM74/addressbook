@@ -1,6 +1,7 @@
 class @ContactsCtrl
-  @inject : ['$scope','dmContactsSvc']
-  constructor : (@$scope, @dmContactsSvc,@$log) ->
+  @inject : ['$scope','dmContactsSvc','dmSessionSvc']
+  constructor : (@$scope, @dmContactsSvc,@dmSessionSvc,@$log) ->
+    @dmSessionSvc.authenticatedOrRedirect('/login')
     @$scope.contacts = []
     @$scope.fetching = false
     @$scope.selectedContact = {}

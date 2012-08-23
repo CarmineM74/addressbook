@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   respond_to :json
+  before_filter :authentication_required
 
   def index
     @users = User.all
