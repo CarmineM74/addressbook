@@ -5,7 +5,7 @@
 class UsersSvc
   constructor: ($resource,@$log,@appConfig) ->
     @$log.log('Initializing Userss Service ...')
-    @users = $resource('http://serverAddress:port/:path/:user_id'
+    @users = $resource('http://:serverAddress:port/:path/:user_id'
       ,{serverAddress: appConfig.serverAddress, port: appConfig.serverPort, path: 'users'}
       ,{index: {method: 'GET', isArray: true}
       ,create: {method: 'POST'}
@@ -41,7 +41,7 @@ class UsersSvc
     @users.index((response, getResponseHeaders) ->  
       if typeof success == 'function'
         success(response, getResponseHeaders)
-     , ->
+     , (response) ->
        if typeof error == 'function'
-         error()
+         error(response)
     )

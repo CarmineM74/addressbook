@@ -53,7 +53,8 @@ class @UsersCtrl
     @$scope.users = @dmUsersSvc.all( (res) =>
       @$log.log(res)
       @$scope.fetching = false
-     , =>
+     , (response) =>
         @$scope.fetching = false
+        @$log.log(JSON.stringify(response)) 
         alert('Error while fetching users!')
     )
