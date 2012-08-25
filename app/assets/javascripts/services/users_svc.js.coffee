@@ -1,12 +1,12 @@
-@app.factory('dmUsersSvc',['$resource','$log', ($resource,$log) ->
-	new UsersSvc($resource,$log) 
+@app.factory('dmUsersSvc',['$resource','$log','appConfig', ($resource,$log,appConfig) ->
+	new UsersSvc($resource,$log,appConfig) 
 ])
 
 class UsersSvc
-  constructor: ($resource,@$log) ->
+  constructor: ($resource,@$log,@appConfig) ->
     @$log.log('Initializing Userss Service ...')
-    @users = $resource('http://192.168.1.95:port/:path/:user_id'
-      ,{port: ':3000', path: 'users'}
+    @users = $resource('http://serverAddress:port/:path/:user_id'
+      ,{serverAddress: appConfig.serverAddress, port: appConfig.serverPort, path: 'users'}
       ,{index: {method: 'GET', isArray: true}
       ,create: {method: 'POST'}
       ,update: {method: 'PUT'}

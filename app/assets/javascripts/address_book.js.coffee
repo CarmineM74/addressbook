@@ -15,6 +15,10 @@
       )
       .otherwise(redirectTo: '/about')
   ])
+  .value('appConfig',{
+    serverAddress: 'dm.dev'
+    serverPort: ':3000'
+  })
 
 class @AddressbookCtrl
   @inject : ['$scope','$log','$http','$location','dmSessionSvc']
@@ -24,6 +28,9 @@ class @AddressbookCtrl
     @$scope.loginInfo = {email: '', password: ''}
     @$scope.login = angular.bind(this,@login)
     @$scope.logout = angular.bind(this,@logout)
+    @$scope.$on('event:testInterceptor-ERROR', (params) =>
+      @$log.log('event:testInterceptor-ERROR ...')
+    )
 
   login : ->
     @$log.log('Logging in ...')

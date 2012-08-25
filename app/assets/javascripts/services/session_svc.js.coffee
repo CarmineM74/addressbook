@@ -1,13 +1,43 @@
-@app.factory('dmSessionSvc',['$resource','$log','$location', ($resource,$log,$location) ->
-	new SessionSvc($resource,$log,$location) 
+@app.factory('dmSessionSvc',['$resource','$log','$location','appConfig', ($resource,$log,$location,appConfig) ->
+	new SessionSvc($resource,$log,$location,appConfig) 
 ])
+@app.factory('testInterceptor',['$rootScope','$q','$log',($rootScope,$q,$log) ->
+    i = new TestInterceptor($rootScope,$q,$log)
+    return i.interceptor
+])
+@app.config(['$httpProvider',($httpProvider) ->
+    $httpProvider.responseInterceptors.push('testInterceptor')
+])
+  
+
+class TestInterceptor
+  constructor: (@$rootScope, @$q, @$log) ->
+    @$log.log('Instantiating TestInterceptor ...')
+
+  interceptor: (promise) =>
+    @$log.log('Returning a new interceptor with promise ...')
+    promise.then(@success,@error)
+
+  success: (response) =>
+    @$log.log('Success case: ' + JSON.stringify(response))
+    response
+
+  error: (response) =>
+    @$log.log('Error case: ' + JSON.stringify(response))
+    if response.status == 401
+      deferred = @$q.defer()
+      @$log.log('Broadcasting event:testInterceptor-ERROR')
+      @$rootScope.$broadcast('event:testInterceptor-ERROR')
+      return deferred.promise
+    else
+      @$q.reject(response)
 
 class SessionSvc
-  constructor: ($resource,@$log,@$location) ->
+  constructor: ($resource,@$log,@$location,@appConfig) ->
     @$log.log('Initializing Session Service ...')
     @current_user = undefined
-    @sessions = $resource('http://192.168.1.95:port/:path/:user_id'
-      ,{port: ':3000', path: 'sessions'}
+    @sessions = $resource('http://:serverAddress:port/:path/:user_id'
+      ,{serverAddress: appConfig.serverAddress, port: appConfig.serverPort, path: 'sessions'}
       ,{create: {method: 'POST'}
       ,destroy: {method: 'DELETE'}}
     )

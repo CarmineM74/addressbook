@@ -1,12 +1,12 @@
-@app.factory('dmContactsSvc',['$resource','$log', ($resource,$log) ->
-	new ContactsSvc($resource,$log) 
+@app.factory('dmContactsSvc',['$resource','$log','appConfig', ($resource,$log,appConfig) ->
+	new ContactsSvc($resource,$log,appConfig) 
 ])
 
 class ContactsSvc
-  constructor: ($resource,@$log) ->
+  constructor: ($resource,@$log,@appConfig) ->
     @$log.log('Initializing Contacts Service ...')
-    @contacts = $resource('http://192.168.1.95:port/:path/:contact_id'
-      ,{port: ':3000', path: 'contacts'}
+    @contacts = $resource('http://serverAddress:port/:path/:contact_id'
+      ,{serverAddress: appConfig.serverAddress, port: appConfig.serverPort, path: 'contacts'}
       ,{index: {method: 'GET', isArray: true}
       ,toPdf: {method: 'GET'}
       ,create: {method: 'POST'}
